@@ -1,5 +1,6 @@
 syntax="proto3";
 option java_outer_classname = "ResultProto";
+option java_package = "assignment";
 message CourseMarks {
   string name = 1;
   int32 score = 2;
