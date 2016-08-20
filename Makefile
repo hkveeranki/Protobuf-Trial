@@ -1,7 +1,10 @@
-all: src/GenerateProtobuf.java assignment/ResultProto.java
+all: SerializeProtobuf DeserializeProtobuf
+SerializeProtobuf: src/GenerateProtobuf.java Protofile
 	javac -d bin/ -cp ".:lib/protobuf.jar" src/GenerateProtobuf.java assignment/ResultProto.java
-assignment/ResultProto.java:Result.proto
-	protoc --java_out=assignment Result.proto
+DeserializeProtobuf:src/DeserializeProtobuf.java
+	javac -d bin/ -cp ".:lib/protobuf.jar" src/DeserializeProtobuf.java assignment/ResultProto.java
+Protofile:Result.proto
+	protoc --java_out=. Result.proto
 clean:
 	rm bin/*.class
 	rm -r assignment
