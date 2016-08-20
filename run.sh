@@ -1,2 +1,2 @@
 make
-java -cp ".:protobuf.jar" GenerateData
+java -cp ".:lib/protobuf.jar:bin" GenerateData input_sample
