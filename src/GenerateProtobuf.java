@@ -5,7 +5,9 @@
 import assignment.ResultProto.CourseMarks;
 import assignment.ResultProto.Student;
 import assignment.ResultProto.Result;
+
 import java.io.*;
+
 public class GenerateProtobuf {
 
     static Student addStudent(String data) {
@@ -39,12 +41,10 @@ public class GenerateProtobuf {
         }
         try {
             FileOutputStream output = new FileOutputStream("result_protobuf");
-            try {
-                result.build().writeTo(output);
-            } finally {
-                output.close();
-            }
+            result.build().writeTo(output);
+            output.close();
         } catch (Exception e) {
+            // Ignore
         }
     }
 }

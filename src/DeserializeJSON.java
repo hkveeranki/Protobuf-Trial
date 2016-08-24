@@ -14,26 +14,23 @@ import java.util.ListIterator;
 
 public class DeserializeJSON {
 
-    static void Deserialize(Object obj){
+    static void Deserialize(Object obj) {
         try {
             PrintWriter writer = new PrintWriter("output_json.txt");
             JSONArray arr = (JSONArray) obj;
-            ListIterator itr = arr.listIterator();
-            while (itr.hasNext()) {
+            for (ListIterator itr = arr.listIterator(); itr.hasNext();) {
                 String to_write = "";
                 JSONObject student = (JSONObject) itr.next();
                 to_write += student.get("Name") + "," + student.get("RollNo");
-                ListIterator marks_list = ((JSONArray) student.get("CourseMarks")).listIterator();
-                while (marks_list.hasNext()) {
+                for (ListIterator marks_list = ((JSONArray) student.get("CourseMarks")).listIterator(); marks_list.hasNext(); ) {
                     JSONObject marks = (JSONObject) marks_list.next();
                     to_write += ":";
-                    to_write += marks.get("CourseName")+","+marks.get("CourseScore");
+                    to_write += marks.get("CourseName") + "," + marks.get("CourseScore");
                 }
                 writer.println(to_write);
             }
             writer.close();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
