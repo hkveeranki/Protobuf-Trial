@@ -1,18 +1,17 @@
+/**
+ * Created by harry7 on 24/8/16.
+ */
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ListIterator;
 
-/**
- * Created by harry7 on 24/8/16.
- */
 public class DeserializeJSON {
 
     static void Deserialize(Object obj){
