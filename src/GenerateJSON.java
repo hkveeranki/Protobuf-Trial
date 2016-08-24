@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.LinkedHashMap;
+import java.util.Objects;
 
 public class GenerateJSON {
     static String[] input_sets;
@@ -16,12 +17,12 @@ public class GenerateJSON {
     static LinkedHashMap generateObject(String data) {
         input_sets = data.split(":");
         info = input_sets[0].split(",");
-        LinkedHashMap map1  = new LinkedHashMap();
+        LinkedHashMap<String,Object> map1  = new LinkedHashMap<>();
         map1.put("Name",info[0]);
         arr = new JSONArray();
         for (int i = 1; i < input_sets.length; i++) {
             marks_data = input_sets[i].split(",");
-            LinkedHashMap map2 = new LinkedHashMap();
+            LinkedHashMap<String,Object> map2 = new LinkedHashMap<>();
             map2.put("CourseScore", Long.valueOf(marks_data[1]));
             map2.put("CourseName", marks_data[0]);
             arr.add(map2);
