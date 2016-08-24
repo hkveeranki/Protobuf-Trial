@@ -14,16 +14,15 @@ public class DeserializeProtobuf {
 
     static void Deserialize(Result result) {
         try {
-            PrintWriter writer = new PrintWriter("output_protobuf.txt", "UTF-8");
+            PrintWriter writer = new PrintWriter("output_protobuf.txt");
             for (Student student : result.getStudentList()) {
-                String to_write="";
-                to_write+=(student.getName()+","+student.getRollNum());
-                for(CourseMarks mark:student.getMarksList()){
-                    to_write+=":";
-                    to_write+=(mark.getName()+","+mark.getScore());
+                String to_write = "";
+                to_write += (student.getName() + "," + student.getRollNum());
+                for (CourseMarks mark : student.getMarksList()) {
+                    to_write += ":";
+                    to_write += (mark.getName() + "," + mark.getScore());
                 }
                 writer.println(to_write);
-                System.out.println("Writing "+to_write);
             }
             writer.close();
         } catch (Exception e) {
