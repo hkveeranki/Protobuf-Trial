@@ -37,7 +37,7 @@ public class GenerateJSON {
         map1.put("RollNo", Long.valueOf(info[1]));
         return map1;
     }
-    
+
     static public void main(String[] args) {
         time_taken = 0;
         try {
@@ -53,15 +53,16 @@ public class GenerateJSON {
                 time_taken += (System.currentTimeMillis() - startTime);
             }
             long startTime = System.currentTimeMillis();
+            String result = arr.toJSONString();
             time_taken += (System.currentTimeMillis() - startTime);
-            writer.print(arr.toJSONString());
+            writer.print(result);
             writer.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         if (args.length == 2 && args[1].equals("STAT")) {
             System.out.println("Time taken for Serialization: " + time_taken + " ms");
-            System.out.println("Rate of Serilization: " + ((double)data_converted) / (time_taken) + " KBps");
+            System.out.println("Rate of Serilization: " + ((double) data_converted) / (time_taken) + " KBps");
         }
     }
 }
