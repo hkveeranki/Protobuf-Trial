@@ -9,6 +9,8 @@ import assignment.ResultProto.Result;
 import java.io.*;
 
 public class GenerateProtobuf {
+    static long time_taken = 0;
+    static long data_converted = 0;
 
     static Student addStudent(String data) {
         PrintStream op = System.out;
@@ -30,21 +32,27 @@ public class GenerateProtobuf {
     static public void main(String[] args) {
         PrintStream op = System.out;
         Result.Builder result = Result.newBuilder();
-
-        try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(args[0]));
             String line;
             while ((line = br.readLine()) != null) {
+                long startTime = System.currentTimeMillis();
                 result.addStudent(addStudent(line));
+                data_converted += line.length();
+                time_taken += System.currentTimeMillis() - startTime;
             }
+            long startTime = System.currentTimeMillis();
+            Result final_result = result.build();
+            time_taken += System.currentTimeMillis() - startTime;
+            FileOutputStream output = new FileOutputStream("result_protobuf");
+            final_result.writeTo(output);
+            output.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        try {
-            FileOutputStream output = new FileOutputStream("result_protobuf");
-            result.build().writeTo(output);
-            output.close();
-        } catch (Exception e) {
-            // Ignore
+        if (args.length == 2 && args[1].equals("STAT")) {
+            System.out.println("Time taken for Serialization: " + time_taken + " ms");
+            System.out.println("Rate of Serilization: " + ((double)data_converted) / ((double)time_taken) + " KBps");
         }
     }
 }

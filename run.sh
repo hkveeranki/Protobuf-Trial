@@ -27,9 +27,11 @@ case "$1" in
 		case "$2" in
 			'-j')
 				java -cp ".:lib/json-simple-1.1.1.jar" GenerateJSON $3 STAT
+				java  -cp ".:lib/json-simple-1.1.1.jar:bin" DeserializeJSON sampleresult.json STAT
 				;;
 			'-p')
 				java -cp ".:lib/protobuf.jar:bin" GenerateProtobuf $3 STAT
+				java  -cp ".:lib/protobuf.jar:bin" DeserializeProtobuf result_protobuf STAT
 				;;
 		esac
 		;;
